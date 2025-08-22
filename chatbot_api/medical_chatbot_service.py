@@ -98,7 +98,7 @@ def load_data():
         
         # Load PDF files
         cure_text = extract_text_from_pdf(os.path.join(data_dir, 'TheCureForAllDiseases.pdf'))
-        textbook_text = extract_text_from_pdf(os.path.join(data_dir, 'Harrison.pdf'))
+        # textbook_text = extract_text_from_pdf(os.path.join(data_dir, 'Harrison.pdf'))
         
         current_rag_documents = [] # Use a local variable first
         for _, row in rag_df.iterrows():
@@ -111,7 +111,7 @@ def load_data():
             doc_text = " | ".join(str(cell) for cell in row if pd.notna(cell))
             current_rag_documents.append(doc_text)
         current_rag_documents += [p.strip() for p in cure_text.split('\n\n') if p.strip()]
-        current_rag_documents += [p.strip() for p in textbook_text.split('\n\n') if p.strip()]
+        # current_rag_documents += [p.strip() for p in textbook_text.split('\n\n') if p.strip()]
         
         rag_documents = current_rag_documents # Assign to global
         print(f"Total documents for retrieval: {len(rag_documents)}")
@@ -174,12 +174,8 @@ def load_data():
     
     except FileNotFoundError as e_fnf:
         print(f"Critical Error during initialization: File not found - {e_fnf}. Please ensure all data files are present in the 'data' directory.")
-        with initialization_lock:
-            initialization_complete = True 
     except Exception as e:
-        print(f"Critical Error during initialization: {e}")
-        with initialization_lock:
-            initialization_complete = True 
+        print(f"Critical Error during initialization: {e}") 
 
 def generate_response(user_message):
     """Generate a response to the user's message using the RAG system"""
