@@ -7,3 +7,8 @@ PyMuPDF
 openai
 requests
 drf-spectacular
+gunicorn
+whitenoise
+dj-database-url
+psycopg2-binary
+django-cors-headers
