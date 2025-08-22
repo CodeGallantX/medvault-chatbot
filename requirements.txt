@@ -1,0 +1,9 @@
+flask
+flask-cors
+pandas
+numpy
+faiss-cpu
+PyMuPDF
+openai
+requests
+drf-spectacular
